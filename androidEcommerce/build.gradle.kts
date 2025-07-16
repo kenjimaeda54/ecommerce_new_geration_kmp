@@ -49,6 +49,9 @@ dependencies {
     implementation(libs.koin.androidx.core)
     implementation(libs.koin.android)
 
+    //coil
+    implementation(libs.coil.compose)
+
 
 
 }

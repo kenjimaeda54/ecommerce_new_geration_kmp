@@ -1,8 +1,8 @@
 package com.ecommercenewgeration.ui.viewmodel
 
 import com.ecommercenewgeration.domain.model.DataOrException
-import com.ecommercenewgeration.domain.model.Product
-import com.ecommercenewgeration.domain.usecase.GetProductUseCase
+import com.ecommercenewgeration.domain.model.ProductWithSession
+import com.ecommercenewgeration.domain.usecase.GetProductByCategoryUseCase
 import com.ecommercenewgeration.util.CoroutineViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -13,22 +13,22 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class HomeViewModel : KoinComponent, CoroutineViewModel() {
-    private val getProductUseCase by inject<GetProductUseCase>()
+    private val getProductUseCase by inject<GetProductByCategoryUseCase>()
     private val _products = MutableStateFlow(
-        DataOrException<List<Product>?, Throwable?, Boolean>(
+        DataOrException<List<ProductWithSession>?, Throwable?, Boolean>(
             null,
             null,
             true
         )
     )
-    val products: StateFlow<DataOrException<List<Product>?, Throwable?, Boolean>> =
+    val products: StateFlow<DataOrException<List<ProductWithSession>?, Throwable?, Boolean>> =
         _products.asStateFlow()
 
     init {
-        getProducts()
+        getProductByCategory()
     }
 
-    private fun getProducts() {
+    private fun getProductByCategory() {
         scope.launch {
           getProductUseCase()
               .catch { exception ->

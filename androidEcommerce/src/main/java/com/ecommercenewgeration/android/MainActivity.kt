@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.*
 import androidx.compose.ui.Modifier
 import com.ecommercenewgeration.android.ui.screens.HomeScreen
+import com.ecommercenewgeration.android.ui.theme.FinancesApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
